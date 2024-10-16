@@ -1,0 +1,214 @@
+# Create the SLB Cota base zone
+
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "id": "slb-cota-base",
+        "key": "offices"
+    },
+    "geometry": {
+    "coordinates": [[
+        [-74.13707114484984, 4.762651885658286],
+        [-74.13907732705918, 4.762463114750503],
+        [-74.13822491487585, 4.761407712811518],
+        [-74.13860376473512, 4.760884301492965],
+        [-74.13712926386232, 4.7595822068542475],
+        [-74.13706307276459, 4.759673911277353],
+        [-74.13708944157626, 4.7597741962330815],
+        [-74.13678862187274, 4.760048236877971],
+        [-74.13666215920604, 4.7598975413662],
+        [-74.13574517034183, 4.758764910607752],
+        [-74.13590015437507, 4.758567558088231],
+        [-74.13525438756953, 4.757752405775989],
+        [-74.13404034597455, 4.758687685715486],
+        [-74.13707114484984, 4.762651885658286]
+        
+    ]],
+    "type": "Polygon"
+    }
+}
+
+###
+# Create the SLB Calle 100 zone
+
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "id": "calle-100",
+        "key": "offices"
+    },
+    "geometry": {
+    "coordinates": [ [
+        [-74.04644050743283, 4.683776645270157],
+        [-74.04669426930562, 4.683220898829674],
+        [-74.04631362649623, 4.683041196292621],
+        [-74.04601979695919, 4.683583631586032],
+        [-74.04644050743283, 4.683776645270157]
+    ]],
+    "type": "Polygon"
+    }
+}
+
+###
+# Create the SLB Commerzone IT Park zone
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "id": "commerzone-it-park",
+        "key": "offices"
+    },
+    "geometry": {
+    "type": "Polygon",
+    "coordinates": [[
+        [-286.116583943367, 18.564249282756997],
+        [-286.11706137657166, 18.560587832808125],
+        [-286.11720621585846, 18.55934699027842],
+        [-286.1150872707367, 18.55901643644325],
+        [-286.11500680446625, 18.560013181446806],
+        [-286.1149907112121, 18.562118531858417],
+        [-286.11513018608093, 18.563939079627293],
+        [-286.116583943367, 18.564249282756997]
+
+    ]]
+    }
+}
+
+###
+# Create the SLB 1430 Enclave zone
+
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "id": "1430-enclave",
+        "key": "offices"
+    },
+    "geometry": {
+    "coordinates": [[
+        [-95.62118959328566, 29.75612851242012],
+        [-95.62118232823232, 29.755850998532026],
+        [-95.62089172609771, 29.755841537818256],
+        [-95.62089535862438, 29.754494953712467],
+        [-95.61861049934147, 29.754564333194978],
+        [-95.61861049934147, 29.755280200507116],
+        [-95.61877759556911, 29.75610328391572],
+        [-95.61926072161752, 29.756141126669476],
+        [-95.62118959328566, 29.75612851242012]
+    ]],
+    "type": "Polygon"
+    }
+}
+
+###
+# Create a web hook for the 
+
+POST http://localhost:8000/geofences
+
+{
+    "name": "srandplace",
+    "url": "https://webhook.site/ad3f979b-ab82-489c-a9ff-b1917316a2a6",
+    "events": [
+        "enter",
+        "exit"
+    ],
+    "key": "car",
+    "zone": "srandplace"
+}
+
+###
+# Inside 1430 Enclave
+
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "key": "car",
+        "id": "54"
+    },
+    "geometry": {
+        "coordinates": [
+            -95.61972639500048,
+            29.75525486898239
+        ],
+        "type": "Point"
+    }
+}
+
+###
+# outside 1430 Enclave
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "key": "car",
+        "id": "54"
+    },
+    "geometry": {
+        "coordinates": [
+            -95.61848468880913,
+            29.754044074307743
+        ],
+        "type": "Point"
+    }
+}
+
+###
+
+###
+# inside Commerzone IT Park
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "key": "car",
+        "id": "54"
+    },
+    "geometry": {
+        "coordinates": [
+            73.88448333474167,
+            18.562470622663128
+        ],
+        "type": "Point"
+    }
+}
+
+###
+# outside Commerzone IT Park
+POST http://localhost:8000/features
+
+{
+    "type": "Feature",
+    "properties": {
+        "key": "car",
+        "id": "54"
+    },
+    "geometry": {
+        "coordinates": [
+            73.88532758991559,
+            18.563859432925597
+        ],
+        "type": "Point"
+    }
+}
+
+###
+
+GET http://localhost:8000/features/offices
+
+###
+
+GET http://localhost:8000/features/car/54
+
+###
+
+GET http://localhost:8000/geofences

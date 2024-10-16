@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  tile38:
+    image: tile38/tile38:latest
+    container_name: fast-api-tile38
+    ports:
+      - "9851:9851"
+    volumes:
+      - ./data/tile38:/data
+
+  mongodb:
+    image: mongo:latest
+    container_name: fast-api-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dbadmin
+      MONGO_INITDB_ROOT_PASSWORD: supersecret
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/data/db

@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+authlib
+python-dotenv
+motor
+pyle38
